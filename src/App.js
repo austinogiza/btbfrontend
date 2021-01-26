@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserHistory } from 'history'
+import React from 'react'
+import {BrowserRouter as Router, Switch, Route} from  'react-router-dom'
+import Layout from './container/Layout'
+import { GlobalStyles } from './GlobalStyles/GlobalStyles'
+import Home from './pages/Home'
+import ScrollTop from './components/ScrollTop'
+import './App.css'
 
-function App() {
+const App = () => {
+  const history = createBrowserHistory()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ <>
+<Router history={history}>
+
+  <Layout>
+  <ScrollTop/>
+  <GlobalStyles/>
+
+    <Switch>
+      <Route component={Home} path='/' exact/>
+    </Switch>
+  </Layout>
+</Router>
+ </>
+  )
 }
 
-export default App;
+export default App
